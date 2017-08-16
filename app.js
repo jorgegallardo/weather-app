@@ -17,5 +17,8 @@ const argv = yargs
 var encodedAddress = encodeURIComponent(argv.a);
 
 if(encodedAddress.length !== 0) {
-  geocode.geocodeAddress(encodedAddress);
+  geocode.geocodeAddress(encodedAddress, (errorMessage, results) => {
+    if(errorMessage) console.log(errorMessage);
+    else console.log(JSON.stringify(results, undefined, 2));
+  });
 } else console.log('Missing address.');
